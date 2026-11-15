@@ -13,30 +13,6 @@ provider "aws" {
 
 # ---------- Parameter ----------
 
-resource "aws_ssm_parameter" "db_host" {
-  name  = "/grocerymate/prod/db_host"
-  type  = "String"
-  value = "postgresql-grocerymate.cx4mkc6ui9f5.eu-central-1.rds.amazonaws.com"
-}
-
-resource "aws_ssm_parameter" "db_name" {
-  name  = "/grocerymate/prod/db_name"
-  type  = "String"
-  value = "grocerymate_db"
-}
-
-resource "aws_ssm_parameter" "db_user" {
-  name  = "/grocerymate/prod/db_user"
-  type  = "String"
-  value = "grocery_user"
-}
-
-resource "aws_ssm_parameter" "db_password" {
-  name  = "/grocerymate/prod/db_password"
-  type  = "SecureString"
-  value = var.db_password
-}
-
 resource "aws_ssm_parameter" "jwt_secret_key" {
   name  = "/grocerymate/prod/jwt_secret_key"
   type  = "SecureString"
