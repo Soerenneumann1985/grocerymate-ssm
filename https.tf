@@ -145,3 +145,7 @@ resource "aws_cloudfront_distribution" "app" {
 output "cloudfront_url" {
   value = "https://${aws_cloudfront_distribution.app.domain_name}"
 }
+
+resource "aws_ebs_encryption_by_default" "main" {
+  enabled = true
+}
