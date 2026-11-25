@@ -149,3 +149,24 @@ output "cloudfront_url" {
 resource "aws_ebs_encryption_by_default" "main" {
   enabled = true
 }
+
+resource "aws_iam_role_policy" "s3_avatars" {
+  name = "grocerymate-prod-s3-avatars"
+  role = data.aws_iam_role.ec2_role.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"]
+        Resource = "arn:aws:s3:::sn-grocerymate-avatars/*"
+      },
+      {
+        Effect   = "Allow"
+        Action   = "s3:ListBucket"
+        Resource = "arn:aws:s3:::sn-grocerymate-avatars"
+      }
+    ]
+  })
+}
